@@ -62,7 +62,7 @@ function showSongList(songs) {
                         <div class="songImg">
                             <img src="Assets/songImage.jpg" alt="">
                         </div>
-                        <div>${song.replace(".mp3","")}</div>
+                        <div>${song.replace(".mp3", "")}</div>
          </li>`;
     } // Task: change the songList images according to respective song.
 
@@ -86,73 +86,38 @@ function showSongList(songs) {
 }
 
 async function displayAlbums() {
-    let fetchApi = await fetch(`./Songs/`);
+    let res = await fetch(`./Songs/playlists.json`);
+    let folders = await res.json();
 
-    let response = await fetchApi.text();
-    // console.log(response);
+    for (let folderName of folders) {
+        let infoRes = await fetch(`./Songs/${folderName}/info.json`);
+        let response = await infoRes.json();
 
-    let div = document.createElement("div");
-    div.innerHTML = response;
-    // console.log(div);
+        let cardContainer = document.querySelector(".cardContainer");
 
-    let anchors = div.getElementsByTagName("a");
-    // console.log(anchors);
-
-    let array = Array.from(anchors);
-
-    for (let index = 0; index < array.length; index++) {
-        const e = array[index];
-        // console.log(e);
-        if (e.href.includes("Songs")) {
-            // console.log(e.innerHTML.split('/')[0]);
-            let folderName = e.innerHTML.split('/')[0];
-
-            // Getting the metaData of each folder:
-            let fetchApi = await fetch(`./Songs/${folderName}/info.json`);
-
-            let response = await fetchApi.json();
-            // console.log(response);
-
-            let cardContainer = document.querySelector(".cardContainer");
-
-            cardContainer.innerHTML = cardContainer.innerHTML + `<div data-folder="${folderName}" class="card">
-
-                    <div class="songImage">
-                        <img src="./Songs/${folderName}/cover.jpg" alt="">
-                    </div>
-
-                    <div class="playButton">
-                        <img src="Assets/play.svg" alt="">
-                    </div>
-
-                    <h3>${response.title}</h3>
-                    <p>${response.description}</p>
-             </div>`
-        }
+        cardContainer.innerHTML = cardContainer.innerHTML + `<div data-folder="${folderName}" class="card">
+            <div class="songImage">
+                <img src="./Songs/${folderName}/cover.jpg" alt="">
+            </div>
+            <div class="playButton">
+                <img src="Assets/play.svg" alt="">
+            </div>
+            <h3>${response.title}</h3>
+            <p>${response.description}</p>
+        </div>`;
     }
 
     // Show the respective songList whenever any card(playlist) is clicked.
     Array.from(document.getElementsByClassName("card")).forEach((e) => {
         e.addEventListener("click", async (item) => {
-            // console.log(item, item.target, item.currentTarget);
-            // console.log(item.currentTarget.dataset);
-
-            // Get the songs after clicking on playlist (not on play button):
             songs = await getSongs(`Songs/${item.currentTarget.dataset.folder}`);
-            // Showing the songList of the playlist:
             showSongList(songs);
 
             if (item.target.tagName === 'IMG' && item.target.parentElement.classList.contains('playButton')) {
-                // console.log(item.target.parentElement);
-                // console.log(item.target.parentElement.classList);
-                // console.log(item.target.parentElement.classList.contains("playButton"));
-
-                // Play the first song if clicked on card's play button
                 playMusic((songs[0]), true);
             }
         });
     });
-
 }
 
 async function main() {
