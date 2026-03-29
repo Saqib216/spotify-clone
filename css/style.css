@@ -352,16 +352,13 @@ svg {
 .playBar {
     width: 100%;
     height: fit-content;
-    /* padding: 20px 0; */
     justify-content: space-around;
-    /* align-items: center; */
     position: fixed;
-    height: 13vh;
-    flex-direction: row;
-    /* margin-bottom: 10px; */
+    height: 17vh;
+    bottom: 0;
+    background: black;
     opacity: 0;
     transition: all 0.2s ease;
-    /* border: 1px solid orangered; */
 }
 
 .buttonsBarFlex {
@@ -535,6 +532,31 @@ svg {
 }
 
 @media screen and (max-width:992px) {
+    .homeSearchFlex {
+        gap: 4px;
+    }
+
+    .homeSearchFlex .home {
+        width: 20px;
+        padding: 0 13px;
+    }
+
+    .homeSearchFlex .searchBox {
+        min-height: 42px;
+    }
+
+    .search,
+    .browse {
+        width: 18px;
+    }
+
+    .searchBox input {
+        font-size: 14px;
+    }
+
+    .buttons2 h2 {
+        display: none;
+    }
 
     .Premium,
     .Support,
@@ -542,24 +564,14 @@ svg {
         display: none;
     }
 
-    .navbar {
-        justify-content: center;
-        margin-left: 20px;
-        gap: 4px;
-    }
-
-    .homeSearchFlex {
-        gap: 4px;
-    }
-
     .loginBtn button {
-        width: 100px;
-        padding: 10px 0;
+        width: 95px;
+        padding: 8px 0;
+        font-size: 14px;
     }
 
-    .installBtn,
-    .signupBtn {
-        width: 120px;
+    .btn {
+        font-size: 14px;
     }
 
     .buttons2 {
@@ -568,6 +580,11 @@ svg {
 
     .buttons2 h2 {
         display: none;
+    }
+
+    .installBtn .installSign {
+        width: 14px;
+        ;
     }
 
     .searchBox {
@@ -580,7 +597,7 @@ svg {
         transition: all 0.4s ease-in-out;
         z-index: 1;
         width: inherit;
-        height: 80vh;
+        height: 88vh;
         max-height: none;
         /* Override the desktop max-height */
     }
@@ -608,17 +625,78 @@ svg {
 
 }
 
-@media screen and (max-width: 786px) {
-    .navbar {
-        justify-content: space-evenly;
-        margin-left: 0px;
-    }
-
+@media screen and (max-width: 700px) {
     .loginBtn button {
-        padding: 5px 15px;
+        padding: 6px 15px;
+        width: 90px;
+        font-size: 12px;
     }
 
-    .searchBox {
+    .btn {
+        font-size: 12px;
+    }
+
+    .homeSearchFlex .home {
+        width: 17px;
+    }
+
+    .homeSearchFlex .searchBox {
+        width: 200px;
+        min-height: 40px;
+    }
+
+    .searchBox input {
+        font-size: 13px;
+    }
+
+    .search {
+        width: 15px;
+    }
+
+    .searchBox .browse {
+        display: none;
+    }
+
+    .buttons2 {
+        gap: 3px;
+    }
+
+    .buttons2 .installSign {
+        display: none;
+    }
+
+    .signupBtn {
+        display: flex;
+        justify-content: center;
+        width: 70px;
+    }
+
+    .navbar .buttons1 {
+        display: none;
+    }
+
+    .cardContainer {
+        justify-content: center;
+        column-gap: 30px;
+    }
+
+}
+
+@media screen and (max-width: 535px) {
+    .navbar {
+        justify-content: flex-end;
+    }
+
+    .logo {
+        position: absolute;
+    }
+
+    .homeSearchFlex {
+        position: absolute;
+        left: 80px;
+    }
+
+    .homeSearchFlex .searchBox {
         width: unset;
         min-height: unset;
         padding: 0px;
@@ -628,44 +706,17 @@ svg {
         padding: 10px;
         border-radius: 40px;
         display: flex;
-        width: 25px;
+        width: 20px;
     }
 
-    .searchBox input,
-    .searchBox .browse {
+    .homeSearchFlex .home {
+        width: 20px;
+    }
+
+    .searchBox input {
         display: none;
     }
 
-    .homeSearchFlex {
-        gap: 15px;
-    }
-
-    .buttons2 {
-        gap: 3px;
-    }
-
-    .signupBtn {
-        display: flex;
-        justify-content: center;
-        width: 70px;
-    }
-
-    .buttons1 {
-        display: none;
-    }
-
-    .cardContainer {
-        justify-content: center;
-        column-gap: 30px;
-    }
-
-    .belowBar {
-        width: 50%;
-    }
-
-}
-
-@media screen and (max-width: 500px) {
     .buttons2 .installBtn {
         display: none;
     }
@@ -689,10 +740,14 @@ svg {
     }
 
     .playBar {
-        flex-direction: column-reverse;
+        flex-direction: column;
     }
 
-    .playBar .belowBar {
+    .playBar .buttonsBarFlex {
+        margin-left: 0;
+    }
+
+    .playBar .buttonsBarFlex .belowBar {
         width: 80%;
     }
 
