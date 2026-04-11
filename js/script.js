@@ -1,4 +1,3 @@
-console.log("Let's write JavaScript");
 const playPB = document.getElementById("playPB");
 const prevPB = document.getElementById("prevPB");
 const nextPB = document.getElementById("nextPB");
@@ -10,6 +9,7 @@ const currentSong = new Audio;
 currentSong.volume = 0.5;
 let currFolder;
 let previousVolume;
+const viewportWidth = window.innerWidth;
 
 function formatTime(seconds) {
     if (isNaN(seconds) || seconds < 0) {
@@ -21,8 +21,27 @@ function formatTime(seconds) {
     if (secs < 10) {
         secs = "0" + secs;
     }
-
     return `${minutes}:${secs}`;
+}
+
+function leftPanelSlide() {
+    // to slide the left panel whenever the hamburger or any playlist is clicked:
+    const leftPanel = document.querySelector(".left");
+    if (leftPanel.style.left == "0%") {
+        leftPanel.style.left = "-120%";
+        leftPanel.style.backgroundColor = "";
+    } else {
+        leftPanel.style.left = "0%";
+        leftPanel.style.backgroundColor = "#1a1a1a";
+    }
+}
+
+function playNextSong() {
+    let index = songs.indexOf(decodeURI(currentSong.src.split('/').slice(-1)[0]));
+    console.log(index);
+    if ((index + 1) < songs.length) {
+        playMusic((songs[index + 1]), true);
+    }
 }
 
 const playMusic = (track, toPlay = false) => {
@@ -37,8 +56,6 @@ const playMusic = (track, toPlay = false) => {
 
     document.querySelector(".circle").style.opacity = "1";
     document.querySelector(".playBar").style.opacity = "1";
-
-    // *Pending Task: Add songInfo to the playBar.
 }
 
 async function getSongs(folder) {
@@ -64,7 +81,7 @@ function showSongList(songs) {
                         </div>
                         <div>${song.replace(".mp3", "")}</div>
          </li>`;
-    } // Task: change the songList images according to respective song.
+    }
 
     // Adding event listener to each songList's li(song)
     let songLi_s = document.querySelector(".songList").getElementsByTagName("li");
@@ -75,6 +92,9 @@ function showSongList(songs) {
             // console.log(e.lastElementChild.innerHTML);
             // console.log(element.target, element.target.tagName);
             // console.log(element.target.parentElement.classList.contains("playNow"));
+            if (viewportWidth <= 992) {
+                leftPanelSlide();
+            }
             if (element.target.tagName === 'IMG' && element.target.parentElement.classList.contains("playNow")) {
                 playMusic((e.lastElementChild.innerHTML), true);
             }
@@ -110,6 +130,9 @@ async function displayAlbums() {
     // Show the respective songList whenever any card(playlist) is clicked.
     Array.from(document.getElementsByClassName("card")).forEach((e) => {
         e.addEventListener("click", async (item) => {
+            if (viewportWidth <= 992) {
+                leftPanelSlide();
+            }
             songs = await getSongs(`Songs/${item.currentTarget.dataset.folder}`);
             showSongList(songs);
 
@@ -161,11 +184,7 @@ async function main() {
 
     // Adding event listener to nextPB(nextButton) of playBar.
     nextPB.addEventListener("click", (e) => {
-        let index = songs.indexOf(decodeURI(currentSong.src.split('/').slice(-1)[0]));
-        // console.log(index);
-        if ((index + 1) < songs.length) {
-            playMusic((songs[index + 1]), true);
-        }
+        playNextSong();
     }
     )
 
@@ -181,12 +200,15 @@ async function main() {
 
         // Moving the circle of the seekBar according to the currentTime:
         document.querySelector(".circle").style.left = (currentSong.currentTime / currentSong.duration) * 100 + "%";
-    }
-    )
+
+        if (currentSong.currentTime === currentSong.duration) {
+            playNextSong();
+        }
+    });
 
     // Adding an event listener to seekBar to seek it:
     document.querySelector(".seekBar").addEventListener("click", (e) => {
-        console.log(e, e.offsetX, e.target.getBoundingClientRect());
+        // console.log(e, e.offsetX, e.target.getBoundingClientRect());
 
         // Calculate percent as a number (0-100):
         let percent = (e.offsetX / e.target.getBoundingClientRect().width) * 100;
@@ -233,19 +255,7 @@ async function main() {
     )
 
     // Adding an event listener to the hamBurger
-    document.querySelector(".hamBurger").addEventListener("click", (e) => {
-        const leftPanel = document.querySelector(".left");
-
-        if (leftPanel.style.left == "0%") {
-            leftPanel.style.left = "-100%";
-            leftPanel.style.backgroundColor = "";
-        } else {
-            leftPanel.style.left = "0%";
-            leftPanel.style.backgroundColor = "#1a1a1a";
-        }
-    }
-    )
-
+    document.querySelector(".hamBurger").addEventListener("click", leftPanelSlide);
 }
 
 main();
