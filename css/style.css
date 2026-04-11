@@ -610,7 +610,7 @@ svg {
         transition: all 0.4s ease-in-out;
         z-index: 1;
         width: 40vw;
-        height: 85vh;
+        height: 80vh;
         max-height: none;
         /* Override the desktop max-height */
     }
