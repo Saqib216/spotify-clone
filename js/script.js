@@ -1,3 +1,4 @@
+let songLi_s = document.querySelector(".songList").getElementsByTagName("li");
 const playPB = document.getElementById("playPB");
 const prevPB = document.getElementById("prevPB");
 const nextPB = document.getElementById("nextPB");
@@ -44,6 +45,26 @@ function playNextSong() {
     }
 }
 
+function songTextColorToggle(item) {
+    // 1. When you click an li or press next or previous button, first go to ALL <li>s 
+    // and remove the 'playing' tag (the sticky note).
+    // This ensures no other song stays green.
+    Array.from(songLi_s).forEach(li => li.classList.remove('playing'));
+
+    // 2. Now, add the 'playing' tag ONLY to the one you just clicked, or to whatever the song is playing by your next or previous button action.
+    item.classList.add('playing');
+}
+
+// Helper function for next and previous buttons to check the currentSong to be highlighted (green):
+function highlightCurrentSong() {
+    let currentSongName = decodeURI(currentSong.src.split('/').slice(-1)[0]).replace(".mp3", "");
+    Array.from(songLi_s).forEach(li => {
+        if (li.lastElementChild.innerHTML === currentSongName) {
+            songTextColorToggle(li);
+        }
+    });
+}
+
 const playMusic = (track, toPlay = false) => {
     currentSong.src = `./${currFolder}/` + track.replace(".mp3", "") + ".mp3";
     // console.log(currentSong.src);
@@ -84,22 +105,19 @@ function showSongList(songs) {
     }
 
     // Adding event listener to each songList's li(song)
-    let songLi_s = document.querySelector(".songList").getElementsByTagName("li");
-    Array.from(songLi_s).forEach(e => {
-        e.addEventListener("click", (element) => {
-            // console.log(songLi_s);
-            // console.log(e);
-            // console.log(e.lastElementChild.innerHTML);
-            // console.log(element.target, element.target.tagName);
-            // console.log(element.target.parentElement.classList.contains("playNow"));
+    Array.from(songLi_s).forEach(item => {
+        item.addEventListener("click", (element) => {
+            // Changing the color of song text when clicking on it:
+            songTextColorToggle(item);
+
             if (viewportWidth <= 992) {
                 leftPanelSlide();
             }
             if (element.target.tagName === 'IMG' && element.target.parentElement.classList.contains("playNow")) {
-                playMusic((e.lastElementChild.innerHTML), true);
+                playMusic((item.lastElementChild.innerHTML), true);
             }
             else {
-                playMusic(e.lastElementChild.innerHTML);
+                playMusic(item.lastElementChild.innerHTML);
             }
         })
     });
@@ -179,12 +197,16 @@ async function main() {
         if ((index - 1) >= 0) {
             playMusic((songs[index - 1]), true);
         }
+        // Hightlighting the current song's text by green.
+        highlightCurrentSong();
     }
     )
 
     // Adding event listener to nextPB(nextButton) of playBar.
     nextPB.addEventListener("click", (e) => {
         playNextSong();
+        // Hightlighting the current song's text by green.
+        highlightCurrentSong();
     }
     )
 
@@ -203,6 +225,7 @@ async function main() {
 
         if (currentSong.currentTime === currentSong.duration) {
             playNextSong();
+            highlightCurrentSong(); // hightlighting the next song
         }
     });
 
@@ -256,6 +279,7 @@ async function main() {
 
     // Adding an event listener to the hamBurger
     document.querySelector(".hamBurger").addEventListener("click", leftPanelSlide);
+
 }
 
 main();
