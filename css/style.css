@@ -423,6 +423,11 @@ svg {
     cursor: pointer;
 }
 
+/* This rule only triggers when the 'playing' class is present */
+.songList ul li.playing div {
+    color: #1fc95b; 
+}
+
 .songList ul li:hover {
     background-color: #1f1f1f;
 }
