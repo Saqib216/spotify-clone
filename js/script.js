@@ -63,9 +63,12 @@ function stopDrag(e) {
     }
     document.querySelector('.circle').classList.remove('dragging');
 
-    // REMOVE event listeners (inside mouseup)
+    // REMOVE event listeners (inside mouseup/touchstart)
+    
     document.removeEventListener('mousemove', handleDrag);
     document.removeEventListener('mouseup', stopDrag);
+    document.removeEventListener('touchmove', handleDrag);
+    document.removeEventListener('touchend', stopDrag);
 }
 
 function leftPanelSlide() {
@@ -305,7 +308,7 @@ async function main() {
     });
 
     // touchdown event for mobile devices
-    document.querySelector('seekBar').addEventListener("touchstart", (e) => {
+    document.querySelector('.seekBar').addEventListener("touchstart", (e) => {
       isDragging = true;
       wasPlayingBeforeDrag = !currentSong.paused;
       currentSong.pause();
