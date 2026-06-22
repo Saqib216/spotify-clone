@@ -64,7 +64,7 @@ function stopDrag(e) {
     document.querySelector('.circle').classList.remove('dragging');
 
     // REMOVE event listeners (inside mouseup/touchstart)
-    
+
     document.removeEventListener('mousemove', handleDrag);
     document.removeEventListener('mouseup', stopDrag);
     document.removeEventListener('touchmove', handleDrag);
@@ -113,7 +113,6 @@ function highlightCurrentSong() {
 
 const playMusic = (track, toPlay = false) => {
     currentSong.src = `./${currFolder}/` + track.replace(".mp3", "") + ".mp3";
-    // console.log(currentSong.src);
     if (toPlay) {
         currentSong.play();
         playPB.src = "Assets/pause.svg";
