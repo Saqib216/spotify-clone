@@ -51,11 +51,6 @@ body {
     left: 70px; */
 }
 
-.home:hover {
-    background-color: #2a2a2a;
-    transform: var(--trans-scale);
-}
-
 .searchBox {
     width: 35vw;
     /* position: absolute;
@@ -69,10 +64,6 @@ body {
     gap: 5px;
     padding: 0 5px;
     transition: all 0.25s ease;
-}
-
-.searchBox:hover {
-    background-color: #2a2a2a;
 }
 
 .searchBox:focus-within {
@@ -111,12 +102,6 @@ input[type="text"]::placeholder {
     transition: transform 0.18s ease;
 }
 
-.search svg:hover,
-.browse svg:hover {
-    transform: scale(1.1);
-    fill: white;
-}
-
 .buttons1 {
     gap: 0 9px;
 }
@@ -130,11 +115,6 @@ input[type="text"]::placeholder {
     font-size: 15px;
     transition: transform 0.1s ease-in-out;
     cursor: pointer;
-}
-
-.btn:hover {
-    color: #ffffff;
-    transform: var(--trans-scale);
 }
 
 .buttons2 {
@@ -160,20 +140,6 @@ input[type="text"]::placeholder {
     fill: var(--svg-fill-default);
 }
 
-.installBtn:hover .install {
-    transform: var(--trans-scale);
-    color: #ffffff;
-}
-
-.installBtn:hover .installSign,
-svg {
-    transform: var(--trans-scale);
-}
-
-.installBtn:hover .installSign svg {
-    fill: var(--svg-hover-fill);
-}
-
 .loginBtn button {
     color: black;
     font-weight: 550;
@@ -183,10 +149,6 @@ svg {
     border-radius: 30px;
     border: none;
     transition: transform 0.1s ease-in-out;
-}
-
-.loginBtn:hover {
-    transform: var(--trans-scale);
 }
 
 .container {
@@ -245,10 +207,6 @@ svg {
 
 }
 
-.separate:hover {
-    text-decoration: underline;
-}
-
 .language {
     width: 100px;
     background: #00000064;
@@ -260,11 +218,6 @@ svg {
     cursor: pointer;
     margin: 30px 15px;
     font-weight: 600;
-}
-
-.language:hover {
-    transform: var(--trans-scale);
-    border: 1px solid white;
 }
 
 .language .icon {
@@ -284,10 +237,6 @@ svg {
     justify-content: center;
     padding: 10px 30px;
     font-family: var(--font-style);
-}
-
-.headBar *:hover {
-    text-decoration: underline white;
 }
 
 .cardContainer {
@@ -315,18 +264,6 @@ svg {
     padding-top: 5px;
 }
 
-/* THIS ONE IS IMPORTANT: */
-
-.card:hover .playButton {
-    bottom: 65px;
-    opacity: 1;
-}
-
-.card:hover {
-    background-color: #1d1d1d;
-    border-radius: 5px;
-}
-
 .songImage>img {
     width: 170px;
     border-radius: 10px;
@@ -345,11 +282,6 @@ svg {
     width: 25px;
     border-radius: 40px;
     padding: 10px;
-}
-
-.playButton:hover img {
-    transform: var(--trans-scale);
-    background-color: rgb(113, 243, 113);
 }
 
 .playBar {
@@ -430,16 +362,8 @@ svg {
     color: #1fc95b;
 }
 
-.songList ul li:hover {
-    background-color: #1f1f1f;
-}
-
 .songList ul li:active {
     background-color: #2a2a2a;
-}
-
-.songList ul li:active:hover {
-    background-color: #484848;
 }
 
 .songList ul li :nth-child(3) {
@@ -455,11 +379,6 @@ svg {
     width: 20px;
     background-color: rgb(77, 242, 77);
     border-radius: 30px;
-}
-
-.songList .playNow :hover {
-    transform: var(--trans-scale);
-    background-color: rgb(113, 243, 113);
 }
 
 .songList .songImg>img {
@@ -499,10 +418,6 @@ svg {
     transition: none;
 }
 
-.seekBar:hover .circle {
-    opacity: 1;
-}
-
 .belowBar {
     display: flex;
     justify-content: center;
@@ -529,15 +444,126 @@ svg {
     transition: all 0.2s ease;
 }
 
-.hamBurger:hover {
-    transform: var(--trans-scale);
-}
-
 .headBar p {
     position: absolute;
     right: 10px;
 }
 
+/*  Desktop Only Hover Effects  */
+
+@media (hover: hover) {
+    .home:hover {
+        background-color: #2a2a2a;
+        transform: var(--trans-scale);
+    }
+
+    .searchBox:hover {
+        background-color: #2a2a2a;
+    }
+
+    .search svg:hover,
+    .browse svg:hover {
+        transform: scale(1.1);
+        fill: white;
+    }
+
+
+    .btn:hover {
+        color: #ffffff;
+        transform: var(--trans-scale);
+    }
+
+
+    .installBtn:hover .install {
+        transform: var(--trans-scale);
+        color: #ffffff;
+    }
+
+
+    .installBtn:hover .installSign,
+    svg {
+        transform: var(--trans-scale);
+    }
+
+
+    .installBtn:hover .installSign svg {
+        fill: var(--svg-hover-fill);
+    }
+
+    .loginBtn:hover {
+        transform: var(--trans-scale);
+    }
+
+
+
+    .separate:hover {
+        text-decoration: underline;
+    }
+
+
+    .language:hover {
+        transform: var(--trans-scale);
+        border: 1px solid white;
+    }
+
+
+    .headBar *:hover {
+        text-decoration: underline white;
+    }
+
+    .card:hover .playButton {
+        bottom: 65px;
+        opacity: 1;
+    }
+
+    .card:hover {
+        background-color: #1d1d1d;
+        border-radius: 5px;
+    }
+
+    .playButton:hover img {
+        transform: var(--trans-scale);
+        background-color: rgb(113, 243, 113);
+    }
+
+    .songList ul li:hover {
+        background-color: #1f1f1f;
+    }
+
+    .songList ul li:active:hover {
+        background-color: #484848;
+    }
+
+
+
+    .songList .playNow :hover {
+        transform: var(--trans-scale);
+        background-color: rgb(113, 243, 113);
+    }
+
+
+    .seekBar:hover .circle {
+        opacity: 1;
+    }
+
+
+    .hamBurger:hover {
+        transform: var(--trans-scale);
+    }
+
+}
+
+/* Mobile Touch Feedback */
+.card:active,
+.songList ul li:active {
+    background-color: #252525 !important;
+}
+
+.btn:active,
+.loginBtn:active {
+    transform: scale(0.95);
+    opacity: 0.8;
+}
 
 /* Writing media queries for responsiveness: */
 
@@ -646,6 +672,15 @@ svg {
 
     .songList {
         max-height: 310px;
+    }
+
+    .card .playButton {
+        display: none;
+    }
+
+    .playButton>img {
+        width: 20px;
+        padding: 8px;
     }
 
 }
