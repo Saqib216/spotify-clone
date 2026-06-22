@@ -34,9 +34,9 @@ function handleDrag(e) {
     const seekBar = document.querySelector(".seekBar");
     const seekBarRect = seekBar.getBoundingClientRect();
 
-    // 1. Calculate position using clientX (mouse position on screen)
+    // 1. Calculate position using clientX (mouse/touch position on screen)
     // relative to seekBar's left edge
-    const mouseX = e.clientX;
+    const mouseX = e.touches ? e.touches[0].clientX : e.clientX;
     let position = (mouseX - seekBarRect.left) / seekBarRect.width;
 
     // 2. multiplying by 100 to get the percentage(0-100)
@@ -302,6 +302,19 @@ async function main() {
         document.addEventListener("mousemove", handleDrag);
         // 3. Behavior after drag stops
         document.addEventListener("mouseup", stopDrag);
+    });
+
+    // touchdown event for mobile devices
+    document.querySelector('seekBar').addEventListener("touchstart", (e) => {
+      isDragging = true;
+      wasPlayingBeforeDrag = !currentSong.paused;
+      currentSong.pause();
+      document.querySelector('.circle').classList.add('dragging');
+
+      // Handling the drag
+      document.addEventListener("touchmove", handleDrag);
+      // Behaviour after drag stops
+      document.addEventListener("touchend", stopDrag);
     }
     )
 
