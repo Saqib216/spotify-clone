@@ -153,8 +153,6 @@ input[type="text"]::placeholder {
 
 .installSign {
     width: 15px;
-    position: relative;
-    top: 3px;
     transition: transform 0.1s ease-in-out;
 }
 
@@ -429,7 +427,7 @@ svg {
 
 /* This rule only triggers when the 'playing' class is present */
 .songList ul li.playing div {
-    color: #1fc95b; 
+    color: #1fc95b;
 }
 
 .songList ul li:hover {
@@ -475,20 +473,30 @@ svg {
     bottom: 0; */
     width: 30vw;
     border-radius: 15px;
-    height: 4px;
+    height: 1px;
     cursor: pointer;
+    padding: 2px;
+    display: flex;
+    align-items: center;
 }
 
 .circle {
     background-color: white;
-    height: 9px;
-    width: 9px;
+    height: 10px;
+    width: 10px;
     border-radius: 15px;
     position: relative;
     left: 0;
-    bottom: 3px;
-    transition: left 0.2s ease-out;
     opacity: 0;
+}
+
+/* transition only when not dragging: */
+.circle:not(.dragging) {
+    transition: left 0.2s ease-out;
+}
+
+.circle.dragging {
+    transition: none;
 }
 
 .seekBar:hover .circle {
@@ -525,7 +533,7 @@ svg {
     transform: var(--trans-scale);
 }
 
-.headBar p{
+.headBar p {
     position: absolute;
     right: 10px;
 }
@@ -692,7 +700,7 @@ svg {
         display: none;
     }
 
-    .left{
+    .left {
         width: 60%;
     }
 
@@ -750,7 +758,7 @@ svg {
         display: none;
     }
 
-    .left{
+    .left {
         width: 90%;
     }
 

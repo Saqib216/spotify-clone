@@ -350,7 +350,7 @@ currentSong.addEventListener("timeupdate", () => {
 - **GitHub:** [github.com/Saqib216](https://github.com/Saqib216)
 - **Portfolio:** [saqib-portfo.netlify.app](https://saqib-portfo.netlify.app)
 - **Instagram:** [@itx.saqib.hussnain](https://instagram.com/itx.saqib.hussnain)
-
+- **LinkedIn:** [saqib-hussnain](https://linkedin.com/in/saqib-hussnain)
 ---
 
 ## 📝 License

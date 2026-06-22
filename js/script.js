@@ -12,6 +12,9 @@ let currFolder;
 let previousVolume;
 const viewportWidth = window.innerWidth;
 
+let isDragging = false;
+let wasPlayingBeforeDrag = false;
+
 function formatTime(seconds) {
     if (isNaN(seconds) || seconds < 0) {
         return "00:00";
@@ -23,6 +26,46 @@ function formatTime(seconds) {
         secs = "0" + secs;
     }
     return `${minutes}:${secs}`;
+}
+
+// part of drag seek functionality:
+function handleDrag(e) {
+    // Get seekBar reference
+    const seekBar = document.querySelector(".seekBar");
+    const seekBarRect = seekBar.getBoundingClientRect();
+
+    // 1. Calculate position using clientX (mouse position on screen)
+    // relative to seekBar's left edge
+    const mouseX = e.clientX;
+    let position = (mouseX - seekBarRect.left) / seekBarRect.width;
+
+    // 2. multiplying by 100 to get the percentage(0-100)
+    let percentage = position * 100;
+
+    // 3. clamping the percentage in edge cases: when percentage becomes negative or more than 100%
+    percentage = Math.max(0, Math.min(100, percentage));
+
+    // 4. updating the circle position:
+    document.querySelector(".circle").style.left = `${percentage}%`;
+
+    // 5. updating the song's current time:
+    currentSong.currentTime = (currentSong.duration * percentage) / 100;
+
+    // 6. display the current time
+    document.querySelector('.songCurrentTime').innerHTML = formatTime(currentSong.currentTime);
+}
+
+// part of drag seek functionality:
+function stopDrag(e) {
+    isDragging = false;
+    if (wasPlayingBeforeDrag) {
+        currentSong.play();
+    }
+    document.querySelector('.circle').classList.remove('dragging');
+
+    // REMOVE event listeners (inside mouseup)
+    document.removeEventListener('mousemove', handleDrag);
+    document.removeEventListener('mouseup', stopDrag);
 }
 
 function leftPanelSlide() {
@@ -156,6 +199,7 @@ async function displayAlbums() {
 
             if (item.target.tagName === 'IMG' && item.target.parentElement.classList.contains('playButton')) {
                 playMusic((songs[0]), true);
+                highlightCurrentSong();
             }
         });
     });
@@ -220,10 +264,12 @@ async function main() {
         // for total time:
         document.querySelector(".songTotalTime").innerHTML = `${formatTime(currentSong.duration)}`;
 
-        // Moving the circle of the seekBar according to the currentTime:
-        document.querySelector(".circle").style.left = (currentSong.currentTime / currentSong.duration) * 100 + "%";
+        // Moving the circle of the seekBar according to the currentTime: (new: if user is NOT dragging the circle)
+        if (!isDragging) {
+            document.querySelector(".circle").style.left = (currentSong.currentTime / currentSong.duration) * 100 + "%";
+        }
 
-        if (currentSong.currentTime === currentSong.duration) {
+        if (currentSong.currentTime > 0 && currentSong.currentTime >= currentSong.duration) {
             playNextSong();
             highlightCurrentSong(); // hightlighting the next song
         }
@@ -241,6 +287,21 @@ async function main() {
 
         // Updating the time according to the circle place.
         currentSong.currentTime = ((currentSong.duration) * percent) / 100;
+    }
+    )
+
+    // NEW: EVENT Listeners for the drag seek functionality:
+    // 1. mousedown event to seekbar itself
+    document.querySelector('.seekBar').addEventListener("mousedown", (e) => {
+        isDragging = true;
+        wasPlayingBeforeDrag = !currentSong.paused;        
+        currentSong.pause();
+        document.querySelector('.circle').classList.add('dragging');
+
+        // 2. Handling the drag 
+        document.addEventListener("mousemove", handleDrag);
+        // 3. Behavior after drag stops
+        document.addEventListener("mouseup", stopDrag);
     }
     )
 
