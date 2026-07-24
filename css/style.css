@@ -631,11 +631,15 @@ body {
 
 /* RESPONSIVE MEDIA QUERIES */
 @media screen and (max-width: 992px) {
+    .container {
+        height: calc(100vh - 150px);
+    }
+
     .left {
         position: fixed;
         left: -120%;
-        top: 80px;
-        bottom: 100px;
+        top: 70px;
+        bottom: 92px;
         z-index: 999;
         width: 300px;
         max-width: 85vw;
@@ -648,13 +652,26 @@ body {
         display: block;
     }
 
+    .navbar {
+        padding: 10px 16px;
+        gap: 10px;
+    }
+
+    .homeSearchFlex {
+        flex: 1;
+        min-width: 0;
+    }
+
     .searchBox {
-        width: 220px;
+        width: 100%;
+        max-width: 220px;
     }
 
     .Premium,
     .Support,
-    .Download {
+    .Download,
+    .divider,
+    .installBtn {
         display: none;
     }
 }
@@ -679,8 +696,21 @@ body {
         display: none;
     }
 
-    .installBtn {
+    .signupBtn {
         display: none;
+    }
+
+    .container {
+        height: calc(100vh - 170px);
+    }
+
+    .left {
+        bottom: 112px;
+    }
+
+    .card {
+        width: 42vw;
+        max-width: 190px;
     }
 
     .playBar {
@@ -695,6 +725,11 @@ body {
         width: 100%;
         text-align: center;
         font-size: 13px;
+    }
+
+    .buttonsBarFlex {
+        width: 100%;
+        max-width: 100%;
     }
 
     .volume {

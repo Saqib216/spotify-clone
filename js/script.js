@@ -352,6 +352,17 @@ async function main() {
     // Adding an event listener to the hamBurger
     document.querySelector(".hamBurger").addEventListener("click", leftPanelSlide);
 
+    document.addEventListener("click", (e) => {
+        const leftPanel = document.querySelector(".left");
+        const hamBurger = document.querySelector(".hamBurger");
+
+        if (leftPanel.style.left === "0%") {
+            if (!leftPanel.contains(e.target) && e.target !== hamBurger) {
+                leftPanelSlide();
+            }
+        }
+    });
+
 }
 
 main();
