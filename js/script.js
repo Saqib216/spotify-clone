@@ -79,7 +79,7 @@ function leftPanelSlide() {
         leftPanel.style.backgroundColor = "";
     } else {
         leftPanel.style.left = "0%";
-        leftPanel.style.backgroundColor = "#1a1a1a";
+        leftPanel.style.backgroundColor = "#111827";
     }
 }
 
@@ -92,16 +92,11 @@ function playNextSong() {
 }
 
 function songTextColorToggle(item) {
-    // 1. When you click an li or press next or previous button, first go to ALL <li>s 
-    // and remove the 'playing' tag (the sticky note).
-    // This ensures no other song stays green.
     Array.from(songLi_s).forEach(li => li.classList.remove('playing'));
-
-    // 2. Now, add the 'playing' tag ONLY to the one you just clicked, or to whatever the song is playing by your next or previous button action.
     item.classList.add('playing');
 }
 
-// Helper function for next and previous buttons to check the currentSong to be highlighted (green):
+// Helper function for next and previous buttons to check the currentSong to be highlighted:
 function highlightCurrentSong() {
     let currentSongName = decodeURI(currentSong.src.split('/').slice(-1)[0]).replace(".mp3", "");
     Array.from(songLi_s).forEach(li => {
@@ -113,6 +108,7 @@ function highlightCurrentSong() {
 
 const playMusic = (track, toPlay = false) => {
     currentSong.src = `./${currFolder}/` + track.replace(".mp3", "") + ".mp3";
+    document.querySelector(".songInfo").innerHTML = decodeURI(track.replace(".mp3", ""));
     if (toPlay) {
         currentSong.play();
         playPB.src = "Assets/pause.svg";
@@ -209,7 +205,7 @@ async function displayAlbums() {
 
 async function main() {
     // Get the list of the songs:
-    songs = await getSongs("Songs/Arijit");
+    songs = await getSongs("Songs/Collection1");
 
     // Show the songList in the library 
     showSongList(songs);
@@ -296,7 +292,7 @@ async function main() {
     // 1. mousedown event to seekbar itself
     document.querySelector('.seekBar').addEventListener("mousedown", (e) => {
         isDragging = true;
-        wasPlayingBeforeDrag = !currentSong.paused;        
+        wasPlayingBeforeDrag = !currentSong.paused;
         currentSong.pause();
         document.querySelector('.circle').classList.add('dragging');
 
@@ -308,15 +304,15 @@ async function main() {
 
     // touchdown event for mobile devices
     document.querySelector('.seekBar').addEventListener("touchstart", (e) => {
-      isDragging = true;
-      wasPlayingBeforeDrag = !currentSong.paused;
-      currentSong.pause();
-      document.querySelector('.circle').classList.add('dragging');
+        isDragging = true;
+        wasPlayingBeforeDrag = !currentSong.paused;
+        currentSong.pause();
+        document.querySelector('.circle').classList.add('dragging');
 
-      // Handling the drag
-      document.addEventListener("touchmove", handleDrag);
-      // Behaviour after drag stops
-      document.addEventListener("touchend", stopDrag);
+        // Handling the drag
+        document.addEventListener("touchmove", handleDrag);
+        // Behaviour after drag stops
+        document.addEventListener("touchend", stopDrag);
     }
     )
 
