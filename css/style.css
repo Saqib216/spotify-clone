@@ -629,6 +629,17 @@ body {
     cursor: pointer;
 }
 
+@media (max-width: 1120px) {
+
+    .Premium,
+    .Support,
+    .Download,
+    .divider,
+    .installBtn {
+        display: none;
+    }
+}
+
 /* RESPONSIVE MEDIA QUERIES */
 @media screen and (max-width: 992px) {
     .container {
@@ -673,6 +684,31 @@ body {
     .divider,
     .installBtn {
         display: none;
+    }
+
+
+}
+
+@media (max-width: 768px) {
+
+    .installSign,
+    .installSign .nav-icon,
+    .installBtn .install {
+        display: none;
+    }
+
+    .installBtn {
+        visibility: hidden;
+        padding: 0;
+        position: absolute;
+    }
+
+    .homeSearchFlex {
+        justify-content: center;
+    }
+
+    .searchBox {
+        max-width: 150px;
     }
 }
 
@@ -734,5 +770,37 @@ body {
 
     .volume {
         display: none;
+        width: 50vw;
+    }
+}
+
+@media (max-width: 420px) {
+    .home {
+        height: 30px;
+        width: 30px;
+    }
+
+    .home>img {
+        height: 15px;
+        width: 15px;
+    }
+
+    .searchBox {
+        width: 30px;
+        height: 30px;
+    }
+
+    .nav-icon {
+        width: 14px;
+        height: 14px;
+    }
+
+    .brand-logo-img {
+        height: 30px;
+    }
+
+    .loginBtn .login {
+        font-size: 12px;
+        padding: 7px 13px;
     }
 }
