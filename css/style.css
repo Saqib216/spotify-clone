@@ -53,10 +53,6 @@ body {
     transition: transform 0.2s ease;
 }
 
-.brand-logo-img:hover {
-    transform: scale(1.03);
-}
-
 .homeSearchFlex {
     gap: 12px;
     align-items: center;
@@ -84,16 +80,6 @@ body {
 .nav-icon.small {
     width: 16px;
     height: 16px;
-}
-
-.home:hover {
-    background: var(--card-hover);
-    border-color: var(--accent-color);
-    box-shadow: var(--accent-glow);
-}
-
-.home:hover .nav-icon {
-    filter: brightness(1.2) drop-shadow(0 0 6px var(--accent-color));
 }
 
 .searchBox {
@@ -149,10 +135,6 @@ body {
     border-radius: 20px;
 }
 
-.btn:hover {
-    color: var(--text-main);
-}
-
 .buttons2 {
     gap: 14px;
 }
@@ -173,11 +155,6 @@ body {
     transition: all 0.2s ease;
 }
 
-.installBtn:hover {
-    background: rgba(255, 255, 255, 0.1);
-    border-color: rgba(255, 255, 255, 0.2);
-}
-
 .installBtn .install {
     padding: 0;
     font-size: 13px;
@@ -194,11 +171,6 @@ body {
     border: none;
     box-shadow: var(--accent-glow);
     transition: all 0.2s ease;
-}
-
-.loginBtn button:hover {
-    transform: scale(1.05);
-    filter: brightness(1.1);
 }
 
 /* MAIN CONTAINER & LAYOUT */
@@ -250,15 +222,6 @@ body {
     transition: all 0.2s ease;
 }
 
-.plus:hover {
-    background: var(--accent-color);
-    box-shadow: var(--accent-glow);
-}
-
-.plus:hover .nav-icon {
-    filter: brightness(0);
-}
-
 .songList {
     flex: 1;
     overflow-y: auto;
@@ -283,11 +246,6 @@ body {
     cursor: pointer;
     border: 1px solid transparent;
     transition: all 0.2s ease;
-}
-
-.songList ul li:hover {
-    background: rgba(255, 255, 255, 0.07);
-    border-color: rgba(0, 229, 255, 0.2);
 }
 
 .songList ul li.playing {
@@ -350,11 +308,6 @@ body {
     transition: all 0.2s ease;
 }
 
-.language:hover {
-    border-color: var(--accent-color);
-    color: var(--accent-color);
-}
-
 /* RIGHT MAIN CONTENT */
 .right {
     flex: 1;
@@ -387,10 +340,6 @@ body {
     transition: all 0.2s ease;
 }
 
-.headBar p:hover {
-    text-decoration: underline;
-}
-
 .cardContainer {
     display: flex;
     flex-wrap: wrap;
@@ -412,13 +361,6 @@ body {
     flex-direction: column;
 }
 
-.card:hover {
-    background: var(--card-hover);
-    transform: translateY(-4px);
-    border-color: rgba(0, 229, 255, 0.3);
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4), 0 0 20px rgba(0, 229, 255, 0.15);
-}
-
 .songImage {
     width: 100%;
     aspect-ratio: 1/1;
@@ -432,10 +374,6 @@ body {
     height: 100%;
     object-fit: cover;
     transition: transform 0.3s ease;
-}
-
-.card:hover .songImage img {
-    transform: scale(1.05);
 }
 
 .playButton {
@@ -454,11 +392,6 @@ body {
     border-radius: 50%;
     padding: 11px;
     box-shadow: 0 4px 16px rgba(0, 229, 255, 0.5);
-}
-
-.card:hover .playButton {
-    opacity: 1;
-    transform: translateY(0);
 }
 
 .card h3 {
@@ -534,10 +467,6 @@ body {
     transition: transform 0.2s ease;
 }
 
-.button:hover {
-    transform: scale(1.15);
-}
-
 .button img {
     width: 20px;
     height: 20px;
@@ -581,11 +510,6 @@ body {
     transition: height 0.2s ease;
 }
 
-.seekBar:hover {
-    height: 8px;
-    background: rgba(255, 255, 255, 0.2);
-}
-
 .circle {
     width: 14px;
     height: 14px;
@@ -599,7 +523,6 @@ body {
     transition: opacity 0.2s ease;
 }
 
-.seekBar:hover .circle,
 .circle.dragging {
     opacity: 1;
 }
@@ -627,6 +550,170 @@ body {
     width: 24px;
     height: 24px;
     cursor: pointer;
+}
+
+@media (hover: hover) {
+    .brand-logo-img:hover {
+        transform: scale(1.03);
+    }
+
+    .home:hover {
+        background: var(--card-hover);
+        border-color: var(--accent-color);
+        box-shadow: var(--accent-glow);
+    }
+
+    .home:hover .nav-icon {
+        filter: brightness(1.2) drop-shadow(0 0 6px var(--accent-color));
+    }
+
+    .btn:hover {
+        color: var(--text-main);
+    }
+
+    .installBtn:hover {
+        background: rgba(255, 255, 255, 0.1);
+        border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .loginBtn button:hover {
+        transform: scale(1.05);
+        filter: brightness(1.1);
+    }
+
+    .plus:hover {
+        background: var(--accent-color);
+        box-shadow: var(--accent-glow);
+    }
+
+    .plus:hover .nav-icon {
+        filter: brightness(0);
+    }
+
+    .songList ul li:hover {
+        background: rgba(255, 255, 255, 0.07);
+        border-color: rgba(0, 229, 255, 0.2);
+    }
+
+    .language:hover {
+        border-color: var(--accent-color);
+        color: var(--accent-color);
+    }
+
+    .headBar p:hover {
+        text-decoration: underline;
+    }
+
+    .card:hover {
+        background: var(--card-hover);
+        transform: translateY(-4px);
+        border-color: rgba(0, 229, 255, 0.3);
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4), 0 0 20px rgba(0, 229, 255, 0.15);
+    }
+
+    .card:hover .songImage img {
+        transform: scale(1.05);
+    }
+
+    .card:hover .playButton {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .button:hover {
+        transform: scale(1.15);
+    }
+
+    .seekBar:hover {
+        height: 8px;
+        background: rgba(255, 255, 255, 0.2);
+    }
+
+    .seekBar:hover .circle {
+        opacity: 1;
+    }
+}
+
+@media (hover: none) {
+    .brand-logo-img:active {
+        transform: scale(1.03);
+    }
+
+    .home:active {
+        background: var(--card-hover);
+        border-color: var(--accent-color);
+        box-shadow: var(--accent-glow);
+    }
+
+    .home:active .nav-icon {
+        filter: brightness(1.2) drop-shadow(0 0 6px var(--accent-color));
+    }
+
+    .btn:active {
+        color: var(--text-main);
+    }
+
+    .installBtn:active {
+        background: rgba(255, 255, 255, 0.1);
+        border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .loginBtn button:active {
+        transform: scale(1.05);
+        filter: brightness(1.1);
+    }
+
+    .plus:active {
+        background: var(--accent-color);
+        box-shadow: var(--accent-glow);
+    }
+
+    .plus:active .nav-icon {
+        filter: brightness(0);
+    }
+
+    .songList ul li:active {
+        background: rgba(255, 255, 255, 0.07);
+        border-color: rgba(0, 229, 255, 0.2);
+    }
+
+    .language:active {
+        border-color: var(--accent-color);
+        color: var(--accent-color);
+    }
+
+    .headBar p:active {
+        text-decoration: underline;
+    }
+
+    .card:active {
+        background: var(--card-hover);
+        transform: translateY(-4px);
+        border-color: rgba(0, 229, 255, 0.3);
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4), 0 0 20px rgba(0, 229, 255, 0.15);
+    }
+
+    .card:active .songImage img {
+        transform: scale(1.05);
+    }
+
+    .card:active .playButton {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .button:active {
+        transform: scale(1.15);
+    }
+
+    .seekBar:active {
+        height: 8px;
+        background: rgba(255, 255, 255, 0.2);
+    }
+
+    .seekBar:active .circle {
+        opacity: 1;
+    }
 }
 
 @media (max-width: 1120px) {
